@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Time    : 2020/10/13
-# @Author  : aurora
-# @Site    :
-# @File    : note.py
-# @Version : 1.0
-# @Python Version : 3.7
-# @Software: PyCharm
-
-
 from tkinter import *
 from tkinter.filedialog import *
 from tkinter.messagebox import *
