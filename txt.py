@@ -22,7 +22,7 @@ def author():  # 定义作者函数
 
 
 def power():   # 定义版权函数
-    showinfo(title="版权信息", message="版权归aurora所有")
+    showinfo(title="版权信息", message="版权软工作业小组所有")
 
 
 def edition():
