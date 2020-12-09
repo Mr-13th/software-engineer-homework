@@ -18,7 +18,7 @@ filename = ''
 
 
 def author():  # 定义作者函数
-    showinfo(title="作者", message="aurora")   # tkinter.messagebox 模块中的showinfo()函数   展示一个小的图形用户界面（弹窗） 展示文本message信息
+    showinfo(title="作者", message="Mr-13th")   # tkinter.messagebox 模块中的showinfo()函数   展示一个小的图形用户界面（弹窗） 展示文本message信息
 
 
 def power():   # 定义版权函数
