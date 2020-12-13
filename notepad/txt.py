@@ -227,7 +227,7 @@ menubar.add_cascade(label="编辑(E)", menu=editmenu)  # 编辑
 
 # 关于 功能
 aboutmenu = Menu(top)
-aboutmenu.add_command(label="作者", command=author)
+aboutmenu.add_command(label="auther", command=author)
 aboutmenu.add_command(label="版权", command=power)
 aboutmenu.add_command(label="版本", command=edition)  #
 menubar.add_cascade(label="关于(A)", menu=aboutmenu)  # 关于
@@ -244,6 +244,20 @@ textPad.config(yscrollcommand=scroll.set)
 scroll.config(command=textPad.yview)
 scroll.pack(side=RIGHT, fill=Y)
 
+textPad.bind("<Control-N>", new_file)
+textPad.bind("<Control-n>", new_file)
+textPad.bind("<Control-O>", open_file)
+textPad.bind("<Control-o>", open_file)
+textPad.bind("<Control-S>", save)
+textPad.bind("<Control-s>", save)
+textPad.bind("<Control-D>", delete)
+textPad.bind("<Control-d>", delete)
+textPad.bind("<Control-R>", rename_file)
+textPad.bind("<Control-r>", rename_file)
+textPad.bind("<Control-A>", select_all)
+textPad.bind("<Control-a>", select_all)
+textPad.bind("<Control-F>", find)
+textPad.bind("<Control-f>", find)
 
 textPad.bind("<Button-3>", mypopup)  #
 top.mainloop()   # 进入主循环
