@@ -3,25 +3,25 @@ from tkinter.filedialog import *
 from tkinter.messagebox import *
 from tkinter import scrolledtext
 import os
-import unittest
+
 filename = ''
 
 
 def author():  # 定义作者函数
-    showinfo(title="作者", message="Mr-13th")   # tkinter.messagebox 模块中的showinfo()函数   展示一个小的图形用户界面（弹窗） 展示文本message信息
+    showinfo(title="Editor", message="Mr-13th")   # tkinter.messagebox 模块中的showinfo()函数   展示一个小的图形用户界面（弹窗） 展示文本message信息
 
 
 def power():   # 定义版权函数
-    showinfo(title="版权信息", message="版权软工作业小组所有")
+    showinfo(title="Copyright information", message="版权软工作业小组所有")
 
 
 def edition():
-    showinfo(title="版本号", message="version 1.0")
+    showinfo(title="Version", message="version 1.0")
 
 
 def new_file(*args):  # 新建文件   可变长参数
     global top, filename, textPad  # 全局变量
-    top.title("未命名文件")   # 界面标题由记事本改为 未命名文件
+    top.title("NewText")   # 界面标题由记事本改为 未命名文件
     filename = None   # 文件名
     textPad.delete(1.0, END)   #  ？？？
 
@@ -61,7 +61,7 @@ def save(*args):   # 保存
 
 def save_as(*args):   # 另存为
     global filename
-    f = asksaveasfilename(initialfile="未命名.txt", defaultextension=".txt")
+    f = asksaveasfilename(initialfile="NewText.txt", defaultextension=".txt")
     filename = f
     fh = open(f, 'w', encoding="utf-8")
     msg = textPad.get(1.0, END)
@@ -84,26 +84,26 @@ def rename_file(*args):  # 重命名
     global filename
     t = Toplevel()
     t.geometry("260x80+200+250")
-    t.title('重命名')
+    t.title('Save As')
     frame = Frame(t)
     frame.pack(fill=X)
-    lable = Label(frame, text="文件名")
+    lable = Label(frame, text="Filename")
     lable.pack(side=LEFT, padx=5)
     var = StringVar()
     e1 = Entry(frame, textvariable=var)
     e1.pack(expand=YES, fill=X, side=RIGHT)
-    botton = Button(t, text="确定", command=lambda: rename(var.get()))
+    botton = Button(t, text="Confirm", command=lambda: rename(var.get()))
     botton.pack(side=BOTTOM, pady=10)
 
 
 def delete(*args):  # 删除
     global filename, top
-    choice = askokcancel('提示', '要执行此操作吗')
+    choice = askokcancel('Reminder', 'Do you want to do this?')
     if choice:
         if os.path.exists(filename):
             os.remove(filename)
             textPad.delete(1.0, END)
-            top.title("记事本")
+            top.title("Notepad")
             filename = ''
 
 
@@ -140,17 +140,17 @@ def select_all():  # 全选
 def find(*agrs):  # 查找栏上面的查找界面
     global textPad
     t = Toplevel(top)
-    t.title("查找")
+    t.title("Find")
     t.geometry("260x60+200+250")   # 图形用户界面的大小
     t.transient(top)
-    Label(t, text="查找：").grid(row=0, column=0, sticky="e")
+    Label(t, text="Find:").grid(row=0, column=0, sticky="e")
     v = StringVar()
     e = Entry(t, width=20, textvariable=v)
     e.grid(row=0, column=1, padx=2, pady=2, sticky="we")
     e.focus_set()
     c = IntVar()
-    Checkbutton(t, text="不区分大小写", variable=c).grid(row=1, column=1, sticky='e')
-    Button(t, text="查找所有", command=lambda: search(v.get(), c.get(), textPad, t, e)).grid\
+    Checkbutton(t, text="Case insensitive", variable=c).grid(row=1, column=1, sticky='e')
+    Button(t, text="Find All", command=lambda: search(v.get(), c.get(), textPad, t, e)).grid\
         (row=0, column=2, sticky="e" + "w", padx=2, pady=2)   # 图形界面中的按钮
 
     def close_search():   # 函数内部定义函数 关闭查找
@@ -183,7 +183,7 @@ def search(needle, cssnstv, textPad, t, e):   # 文章内部进行查找 匹配�
             start = lastpos
             textPad.tag_config('match', background="yellow")  # 查找到的元素变为高亮的黄色  突出显示
         e.focus_set()
-        t.title(str(count) + "个被匹配")   #
+        t.title(str(count) + " matched")   #
 
 
 def refresh():  # 刷新函数
@@ -191,11 +191,11 @@ def refresh():  # 刷新函数
     if filename:
         top.title(os.path.basename(filename))
     else:
-        top.title("记事本")
+        top.title("Text")
 
 
 top = Tk()   # 新建图形用户界面（主界面）
-top.title("记事本")  # 顶层标题
+top.title("Text")  # 顶层标题
 top.geometry("640x480+500+200")  # 界面大小
 
 menubar = Menu(top)
@@ -204,33 +204,33 @@ menubar = Menu(top)
 # Menu类控件用来实现顶层/下拉/弹出菜单
 filemenu = Menu(top)  # 创建一个顶级菜单
 # 通过add_command函数添加一个下拉的子菜单
-filemenu.add_command(label="新建", accelerator="Ctrl+N", command=new_file)   # 创建一个下拉菜单“新建”，然后将它添加到顶级菜单中 command绑定点击后调用的函数
-filemenu.add_command(label="打开", accelerator="Ctrl+O", command=open_file)
-filemenu.add_command(label="保存", accelerator="Ctrl+S", command=save)
-filemenu.add_command(label="另存为", accelerator="Ctrl+shift+s", command=save_as)
-filemenu.add_command(label="重命名", accelerator="Ctrl+R", command=rename_file)
-filemenu.add_command(label="删除", accelerator="Ctrl+D", command=delete)
-menubar.add_cascade(label="文件(F)", menu=filemenu)  # 文件
+filemenu.add_command(label="New Document", accelerator="Ctrl+N", command=new_file)   # 创建一个下拉菜单“新建”，然后将它添加到顶级菜单中 command绑定点击后调用的函数
+filemenu.add_command(label="Open", accelerator="Ctrl+O", command=open_file)
+filemenu.add_command(label="Save", accelerator="Ctrl+S", command=save)
+filemenu.add_command(label="Save As", accelerator="Ctrl+shift+s", command=save_as)
+filemenu.add_command(label="Rename", accelerator="Ctrl+R", command=rename_file)
+filemenu.add_command(label="Delete", accelerator="Ctrl+D", command=delete)
+menubar.add_cascade(label="File(F)", menu=filemenu)  # 文件
 
 # 编辑功能
 editmenu = Menu(top)
-editmenu.add_command(label="撤销", accelerator="Ctrl+Z", command=undo)
-editmenu.add_command(label="重做", accelerator="Ctrl+Y", command=redo)
+editmenu.add_command(label="Backout", accelerator="Ctrl+Z", command=undo)
+editmenu.add_command(label="Reform", accelerator="Ctrl+Y", command=redo)
 editmenu.add_separator()  # 分割线
-editmenu.add_command(label="剪切", accelerator="Ctrl+X", command=cut)
-editmenu.add_command(label="复制", accelerator="Ctrl+C", command=copy)
-editmenu.add_command(label="粘贴", accelerator="Ctrl+V", command=paste)
+editmenu.add_command(label="Shear", accelerator="Ctrl+X", command=cut)
+editmenu.add_command(label="Copy", accelerator="Ctrl+C", command=copy)
+editmenu.add_command(label="Stick", accelerator="Ctrl+V", command=paste)
 editmenu.add_separator()
-editmenu.add_command(label="查找", accelerator="Ctrl+F", command=find)
-editmenu.add_command(label="全选", accelerator="Ctrl+A", command=select_all)
-menubar.add_cascade(label="编辑(E)", menu=editmenu)  # 编辑
+editmenu.add_command(label="Find", accelerator="Ctrl+F", command=find)
+editmenu.add_command(label="Check All", accelerator="Ctrl+A", command=select_all)
+menubar.add_cascade(label="Edit(E)", menu=editmenu)  # 编辑
 
 # 关于 功能
 aboutmenu = Menu(top)
-aboutmenu.add_command(label="auther", command=author)
-aboutmenu.add_command(label="版权", command=power)
-aboutmenu.add_command(label="版本", command=edition)  #
-menubar.add_cascade(label="关于(A)", menu=aboutmenu)  # 关于
+aboutmenu.add_command(label="Editor", command=author)
+aboutmenu.add_command(label="Copyright", command=power)
+aboutmenu.add_command(label="Version", command=edition)  #
+menubar.add_cascade(label="About(A)", menu=aboutmenu)  # 关于
 
 top['menu'] = menubar
 
@@ -244,24 +244,7 @@ textPad.config(yscrollcommand=scroll.set)
 scroll.config(command=textPad.yview)
 scroll.pack(side=RIGHT, fill=Y)
 
-textPad.bind("<Control-N>", new_file)
-textPad.bind("<Control-n>", new_file)
-textPad.bind("<Control-O>", open_file)
-textPad.bind("<Control-o>", open_file)
-textPad.bind("<Control-S>", save)
-textPad.bind("<Control-s>", save)
-textPad.bind("<Control-D>", delete)
-textPad.bind("<Control-d>", delete)
-textPad.bind("<Control-R>", rename_file)
-textPad.bind("<Control-r>", rename_file)
-textPad.bind("<Control-A>", select_all)
-textPad.bind("<Control-a>", select_all)
-textPad.bind("<Control-F>", find)
-textPad.bind("<Control-f>", find)
 
 textPad.bind("<Button-3>", mypopup)  #
 top.mainloop()   # 进入主循环
-
-if __name__ =='__main__':
-    unittest.main()
 
