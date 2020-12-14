@@ -3,7 +3,7 @@ from tkinter.filedialog import *
 from tkinter.messagebox import *
 from tkinter import scrolledtext
 import os
-
+import unittest
 filename = ''
 
 
@@ -261,4 +261,7 @@ textPad.bind("<Control-f>", find)
 
 textPad.bind("<Button-3>", mypopup)  #
 top.mainloop()   # 进入主循环
+
+if __name__ =='__main__':
+    unittest.main()
 
