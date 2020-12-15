@@ -195,9 +195,28 @@ def refresh():  # 刷新函数
 
 
 def python_run():
+    global filename
+    f = asksaveasfilename(initialfile="pycode.py", defaultextension=".py")
+    filename = f
+    fh = open(f, 'w', encoding="utf-8")
+    msg = textPad.get(1.0, END)
+    fh.write(msg)
+    fh.close()
+    top.title("" + os.path.basename(f))
+    os.system("python %s" % f)
     return
 
 def cpp_run():
+    global filename
+    f = asksaveasfilename(initialfile="cppcode.cpp", defaultextension=".cpp")
+    filename = f
+    fh = open(f, 'w', encoding="utf-8")
+    msg = textPad.get(1.0, END)
+    fh.write(msg)
+    fh.close()
+    top.title("" + os.path.basename(f))
+    os.system("g++ %s" % f)
+    os.system("./a.out")
     return
 
 top = Tk()   # 新建图形用户界面（主界面）
