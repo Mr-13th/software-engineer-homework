@@ -194,10 +194,17 @@ def refresh():  # 刷新函数
         top.title("Text")
 
 
+def python_run():
+    return
+
+def cpp_run():
+    return
+
 top = Tk()   # 新建图形用户界面（主界面）
 top.title("Text")  # 顶层标题
+#l = Label(top, text='Hello! this is Tkinter', bg='green', font=('Arial', 12), width=30, height=2)
+#l.pack()
 top.geometry("640x480+500+200")  # 界面大小
-
 menubar = Menu(top)
 
 # 文件功能
@@ -231,6 +238,12 @@ aboutmenu.add_command(label="Editor", command=author)
 aboutmenu.add_command(label="Copyright", command=power)
 aboutmenu.add_command(label="Version", command=edition)  #
 menubar.add_cascade(label="About(A)", menu=aboutmenu)  # 关于
+
+#编程 功能
+codemenu = Menu(top)
+codemenu.add_command(label="Run python", command=python_run)
+codemenu.add_command(label="Run C++", command=cpp_run)
+menubar.add_cascade(label="Code", menu=codemenu)
 
 top['menu'] = menubar
 
