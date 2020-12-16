@@ -7,10 +7,6 @@ import os
 filename = ''
 
 
-def author():  # 定义作者函数
-    showinfo(title="Editor", message="Mr-13th")   # tkinter.messagebox 模块中的showinfo()函数   展示一个小的图形用户界面（弹窗） 展示文本message信息
-
-
 def power():   # 定义版权函数
     showinfo(title="Copyright information", message="版权软工作业小组所有")
 
@@ -253,7 +249,6 @@ menubar.add_cascade(label="Edit(E)", menu=editmenu)  # 编辑
 
 # 关于 功能
 aboutmenu = Menu(top)
-aboutmenu.add_command(label="Editor", command=author)
 aboutmenu.add_command(label="Copyright", command=power)
 aboutmenu.add_command(label="Version", command=edition)  #
 menubar.add_cascade(label="About(A)", menu=aboutmenu)  # 关于
