@@ -6,7 +6,9 @@ the project member:
 
 ​	software tester: 纪冉 陈为曦
 
-New the project in 10.28
+If you are a Window system user, you can download the exe file from the dist file.
 
-Add the main project code in 12.09
+If you want to run the source code, you need download the package included in the requirements.txt.
+
+
 
