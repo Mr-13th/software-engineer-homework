@@ -233,7 +233,7 @@ def setddl():
     def deadline():
         s = entry.get() # 获取输入框的值
         now_time = time.time()
-        aid_date = datetime.datetime.strptime(s, "%Y-%m-%d")
+        aid_date = datetime.datetime.strptime(s, "%Y-%m-%d %H:%M:%S")
         aid_time = int(time.mktime(aid_date.timetuple()))  # 转化为时间戳
         dead_line = int(aid_time - now_time)  # 时间差
         dead_month = dead_line // (60 * 60 * 24 * 30)
@@ -250,7 +250,7 @@ def setddl():
         if tkinter.messagebox.askokcancel("Quit", "Do you want to exit?"):
             window.destroy()
 
-    label = Label(window, text="Please deadtime:")
+    label = Label(window, text="Please set deadline:")
     label.config(bg='#ce3366', fg='yellow', font=("华为行楷", 20))
     label.config(relief=RAISED, bd=8, )
     label.grid(row=0, sticky=W)
