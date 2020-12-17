@@ -216,7 +216,7 @@ def cpp_run():
     fh.close()
     top.title("" + os.path.basename(f))
     os.system("g++ %s" % f)
-    os.system("./a.out")
+    os.system("a")
     return
 
 #start setddl
