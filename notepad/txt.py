@@ -1,12 +1,12 @@
 from tkinter import *
 from tkinter.filedialog import *
 import tkinter.messagebox
+from tkinter.messagebox import *
 from tkinter import scrolledtext
 import os
 import time                                                                                                                                                                  
 import tkinter.font as tkFont
 import datetime
-
 
 filename = ''
 
