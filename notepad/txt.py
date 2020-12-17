@@ -243,9 +243,9 @@ def setddl():
         dead_seconds = dead_line % 60
         # content = '剩余时间：{}月{}天{}小时{}分钟{}秒'.format(str(dead_month), str(dead_
         #                                           str(dead_seconds))
-        content = '剩余时间:%s月%s天%02d小时%02d分钟%02d秒' % (dead_month, dead_days, dead_hours, dead_minutes,dead_seconds)
+        content = 'left time:%smonth(s)%sday(s)%02hour(s)%02dminute(s)%02dsecond(s)' % (dead_month, dead_days, dead_hours, dead_minutes,dead_seconds)
         if dead_month < 0:
-            content = '时间到了，你的任务完成了吗？'
+            content = 'Time is up. Have you finished your task?'
         return content
 
 
@@ -290,7 +290,7 @@ def setddl():
 
 def now():
     timestring = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-    timestring = "当前时间:%s" % timestring
+    timestring = "The current time:%s" % timestring
     return timestring
 
 
