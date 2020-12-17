@@ -228,7 +228,7 @@ def setddl():
     screen_height = window.winfo_screenheight()
     x = str((screen_width - 888) // 2)
     y = str(screen_height - 75)
-    window.geometry("1080x250")
+    window.geometry("640x150")
     
     def deadline():
         s = entry.get() # 获取输入框的值
@@ -248,12 +248,9 @@ def setddl():
             content = '时间到了，你的任务完成了吗？'
         return content
 
-    def closewindow():
-        if tkinter.messagebox.askokcancel("Quit", "Do you want to exit?"):
-            window.destroy()
 
-    label = Label(window, text="Please set deadline:")
-    label.config(bg='#ce3366', fg='yellow', font=("华为行楷", 20))
+    label = Label(window, text="Please input ddl:")
+    label.config(bg='#ce3366', fg='yellow', font=("华为行楷", 15))
     label.config(relief=RAISED, bd=8, )
     label.grid(row=0, sticky=W)
     ft = tkFont.Font(family="Buxton Sketch", size=36, weight=tkFont.BOLD)
@@ -283,7 +280,7 @@ def setddl():
     botton = Button(window, text='start', command=Refresh)
     botton.grid(row=3, sticky=W)
     botton.config(bd=8, relief=RAISED, bg='#ce3366', fg='yellow')
-    botton.config(font=("Hwlvetica", 20, "bold italic"))
+    botton.config(font=("Hwlvetica", 15, "bold italic"))
 
     window.after(1000, run)
     window.mainloop()
