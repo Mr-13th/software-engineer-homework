@@ -244,6 +244,8 @@ def setddl():
         # content = '剩余时间：{}月{}天{}小时{}分钟{}秒'.format(str(dead_month), str(dead_
         #                                           str(dead_seconds))
         content = '剩余时间:%s月%s天%02d小时%02d分钟%02d秒' % (dead_month, dead_days, dead_hours, dead_minutes,dead_seconds)
+        if dead_month < 0:
+            content = '时间到了，你的任务完成了吗？'
         return content
 
     def closewindow():
@@ -278,16 +280,10 @@ def setddl():
             print(e)
     # 开始到计时
 
-    botton = Button(window, text='starttime', command=Refresh)
+    botton = Button(window, text='start', command=Refresh)
     botton.grid(row=3, sticky=W)
     botton.config(bd=8, relief=RAISED, bg='#ce3366', fg='yellow')
     botton.config(font=("Hwlvetica", 20, "bold italic"))
-    # 退出按钮
-    btn = Button(window, text="Quit", command=window.quit)
-    btn.grid(row=3, column=1, sticky=E)
-    btn.config(bd=8, relief=RAISED, bg='#ce3366', fg='yellow')
-    btn.config(font=("Hwlvetica", 20, "bold italic"))
-    window.protocol('WM_DELETE_WINDOW', closewindow)
 
     window.after(1000, run)
     window.mainloop()
