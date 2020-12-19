@@ -278,7 +278,7 @@ def setddl():
             print(e)
     # 开始到计时
 
-    botton = Button(window, text='starttime', command=Refresh)
+    botton = Button(window, text='start', command=Refresh)
     botton.grid(row=3, sticky=W)
     botton.config(bd=8, relief=RAISED, bg='#ce3366', fg='yellow')
     botton.config(font=("Hwlvetica", 20, "bold italic"))
