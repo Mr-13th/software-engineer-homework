@@ -1,8 +1,8 @@
-/* helloworld.cpp */
-#include <iostream>
-int main(int argc,char *argv[])
-{
-    std::cout << "hello, world" << std::endl;
-    return(0);
+#include<iostream>
+using namespace std;
+int main(){
+	cout<<"hello cpp!";
+	return 0;
 }
+
 

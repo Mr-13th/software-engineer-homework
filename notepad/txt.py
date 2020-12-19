@@ -216,7 +216,7 @@ def cpp_run():
     fh.close()
     top.title("" + os.path.basename(f))
     os.system("g++ %s" % f)
-    os.system("./a.out")
+    os.system("a")
     return
 
 #start setddl
@@ -228,7 +228,7 @@ def setddl():
     screen_height = window.winfo_screenheight()
     x = str((screen_width - 888) // 2)
     y = str(screen_height - 75)
-    window.geometry("1080x250")
+    window.geometry("640x150")
     
     def deadline():
         s = entry.get() # 获取输入框的值
@@ -243,15 +243,14 @@ def setddl():
         dead_seconds = dead_line % 60
         # content = '剩余时间：{}月{}天{}小时{}分钟{}秒'.format(str(dead_month), str(dead_
         #                                           str(dead_seconds))
-        content = '剩余时间:%s月%s天%02d小时%02d分钟%02d秒' % (dead_month, dead_days, dead_hours, dead_minutes,dead_seconds)
+        content = 'left time:%smonth(s) %sday(s) %shour(s) %02dminute(s) %02dsecond(s)' % (dead_month, dead_days, dead_hours, dead_minutes,dead_seconds)
+        if dead_month < 0:
+            content = 'Time is up. Have you finished your task?'
         return content
 
-    def closewindow():
-        if tkinter.messagebox.askokcancel("Quit", "Do you want to exit?"):
-            window.destroy()
 
-    label = Label(window, text="Please set deadline:")
-    label.config(bg='#ce3366', fg='yellow', font=("华为行楷", 20))
+    label = Label(window, text="Please input ddl:")
+    label.config(bg='#ce3366', fg='yellow', font=("华为行楷", 15))
     label.config(relief=RAISED, bd=8, )
     label.grid(row=0, sticky=W)
     ft = tkFont.Font(family="Buxton Sketch", size=36, weight=tkFont.BOLD)
@@ -281,13 +280,7 @@ def setddl():
     botton = Button(window, text='start', command=Refresh)
     botton.grid(row=3, sticky=W)
     botton.config(bd=8, relief=RAISED, bg='#ce3366', fg='yellow')
-    botton.config(font=("Hwlvetica", 20, "bold italic"))
-    # 退出按钮
-    btn = Button(window, text="Quit", command=window.quit)
-    btn.grid(row=3, column=1, sticky=E)
-    btn.config(bd=8, relief=RAISED, bg='#ce3366', fg='yellow')
-    btn.config(font=("Hwlvetica", 20, "bold italic"))
-    window.protocol('WM_DELETE_WINDOW', closewindow)
+    botton.config(font=("Hwlvetica", 15, "bold italic"))
 
     window.after(1000, run)
     window.mainloop()
@@ -297,7 +290,7 @@ def setddl():
 
 def now():
     timestring = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-    timestring = "当前时间:%s" % timestring
+    timestring = "The current time:%s" % timestring
     return timestring
 
 
