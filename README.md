@@ -1,13 +1,5 @@
 # notepad
 
-### the project member:
-
-+ project manager: 何方姝
-
-+ software developer: 方震 杨展博
-
-+ software tester: 纪冉 陈为曦
-
 ## What are the functions we want to present in the product?
 
 + Work record
